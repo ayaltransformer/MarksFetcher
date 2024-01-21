@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Marks Portal</title>
+  <!-- Include jQuery and Bootstrap CSS links here -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- Include Bootstrap CSS link here if you want to use it -->
+</head>
+<body>
+
+<div class="container">
+  <h2>Enter Your Roll Number:</h2>
+  <input type="text" id="rollNumberInput" placeholder="Enter Roll Number">
+  <button onclick="getMarks()">Get Marks</button>
+  <div id="result"></div>
+</div>
+
+<!-- Include Bootstrap and jQuery JS links here if you want to use them -->
+<script>
+  function getMarks() {
+    var rollNumber = document.getElementById("rollNumberInput").value;
+
+    // Make an AJAX request to the Google Apps Script web app
+    var url = "https://script.google.com/macros/s/AKfycbw2rclLXItaV-2TWU4r_WzfHy87l67P5ni3l6dzmEcGlkrwLKy-7gG0W9uCsMvIobiArQ/exec?rollNumber=" + rollNumber;
+
+    $.ajax({
+      url: url,
+      type: 'GET',
+      success: function(data) {
+        $("#result").text(data);
+      },
+      error: function(error) {
+        console.error('Error:', error);
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
